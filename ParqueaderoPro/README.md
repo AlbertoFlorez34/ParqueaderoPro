@@ -247,6 +247,7 @@ Crea la Vista "Crear": Falta el archivo donde escribes el nombre del remedio. Cr
 
 @model ParqueaderoPro.Models.Vehiculo
 
+
 <div class="container mt-4">
     <h2>🚗 Registrar Entrada de Vehículo</h2>
     <hr />
