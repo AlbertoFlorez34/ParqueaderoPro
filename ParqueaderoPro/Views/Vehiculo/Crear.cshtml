@@ -1,0 +1,21 @@
+﻿@model ParqueaderoPro.Models.Vehiculo
+
+<div class="container mt-4">
+    <h2>🚗 Registrar Entrada de Vehículo</h2>
+    <hr />
+    <form asp-action="Crear">
+        <div class="mb-3">
+            <label class="form-label">Placa del Vehículo</label>
+            <input asp-for="Placa" class="form-control" placeholder="Ej: ABC-123" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tipo de Vehículo</label>
+            <select asp-for="Tipo" class="form-select">
+                <option value="Carro">Carro</option>
+                <option value="Moto">Moto</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar Entrada</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

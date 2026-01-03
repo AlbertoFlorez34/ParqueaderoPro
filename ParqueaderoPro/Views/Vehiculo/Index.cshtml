@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ParqueaderoPro.Models.Vehiculo>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">🚗 Control de Parqueadero</h2>
+        <a asp-action="Crear" class="btn btn-success font-weight-bold">+ REGISTRAR ENTRADA</a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Placa</th>
+                        <th>Tipo</th>
+                        <th>Fecha Entrada</th>
+                        <th>Estado / Total</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@item.Placa.ToUpper()</td>
+                            <td>
+                                <span class="badge @(item.Tipo == "Carro" ? "bg-info" : "bg-secondary")">
+                                    @item.Tipo
+                                </span>
+                            </td>
+                            <td>@item.FechaEntrada.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @if (item.FechaSalida == null)
+                                {
+                                    <span class="text-warning font-weight-bold">● En Parqueadero</span>
+                                }
+                                else
+                                {
+                                    <span class="text-success">
+                                        Salió (@item.TotalPagar.ToString("C0"))
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.FechaSalida == null)
+                                {
+                                    <form asp-action="Salida" asp-route-id="@item.Id" method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm shadow-sm"
+                                                onclick="return confirm('¿Confirmar salida y cobro?')">
+                                            Cobrar y Salir
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-outline-secondary btn-sm" disabled>Completado</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
